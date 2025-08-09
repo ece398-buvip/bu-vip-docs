@@ -1,0 +1,152 @@
+import img_powerpole from './powerpole.jpeg'
+import img_sb50 from './anderson-sb50.jpg'
+import img_dupont from './dupont.jpeg'
+import img_jstxh from './jstxh.jpg'
+import img_aviation from './aviation.jpg'
+import img_rj45 from './rj45.jpeg'
+import screwterm from './screw-terminals.jpg'
+import wago from './wagos.jpeg'
+import terminalBlocks from './terminal-blocks.jpg'
+import screwTermBlocks from './panel-term-blocks.webp'
+import pico from './pico.jpg'
+import uno from './uno.jpg'
+import esp32 from './esp32.jpg'
+import pi4 from './pi4.jpg'
+
+# Electrical
+
+Recommended standard electrical components in ECE 398 VIP at Bradley University.
+
+## Connectors
+
+Connectors to use when carrying power between two points.
+
+### Anderson SB-50
+*High Power - Wire to Wire*
+
+<img src={img_sb50} width="300" />
+
+- Good for battery connections to high-power sources (up to 50A)
+- Typically connects to larger gauge wire with lugs on the end to attach to battery posts
+- No soldering
+
+### Anderson PowerPole
+*Low-Medium Power / Data - Wire to Wire*
+
+<img src={img_powerpole} width="300" />
+
+- Better for small power applications
+- Can typically crimp down to 22AWG wire, making it good for communication too
+- No soldering
+
+### Dupont Connectors
+*Low Power / Data - Wire to Wire*
+
+<img src={img_dupont} width="300" />
+
+### JST-XH Connectors
+*Low Power / Data - Wire to Wire*
+
+<img src={img_jstxh} width="300" />
+
+### Circular Aviation Connectors
+*Low Power / Data - Wire to Wire*
+
+<img src={img_aviation} width="300" />
+
+* Good for more rugged environments (outdoors, vibration, etc.)
+* More secure connection with threaded locking mechanism
+* Requires soldering to attach wires to pins
+
+### RJ45 & CAT6E cable (Ethernet)
+*Low Power / Data - Wire to Wire*
+
+<img src={img_rj45} width="300" />
+
+* Good for high-speed data transfer
+
+### WAGO Connectors
+
+*Low-Medium Power / Data - Wire to Wire*
+
+<img src={wago} width="300" />
+
+* Good for quick, solderless connections
+* Works with many different wire gauges
+* Great for prototyping and testing
+
+### Screw Termainsl
+
+*Low Power / Data - Wire to Board*
+
+<img src={screwterm} width="300" />
+
+* Great for wire-to-board connections (like to a PCB, breadboard, or proto board)
+
+### Terminal Blocks (Din)
+
+*Low-Medium Power / Data - Wire to Wire*
+
+<img src={terminalBlocks} width="300" />
+
+* Mounts to a DIN rail for organization
+* Modular
+* Come in either screw or spring clamp terminals
+
+### Terminal Blocks (Panel Mount)
+
+*Low-Medium Power / Data - Wire to Wire*
+
+<img src={screwTermBlocks} width="300" />
+
+* Mounts to a panel using screw holes
+
+## Microcontrollers
+
+Standard microcontrollers for use in ECE 398 VIP projects. Commonly kept in stock in the lab.
+
+### Arduino Uno
+
+<img src={uno} width="300" />
+
+A popular controller based on the ATMega328P microcontroller.
+
+- Easy to prototype
+- Lots of libraries and tutorials available
+- Not as powerful
+
+### Raspberry Pi Pico
+
+<img src={pico} width="300" />
+
+Relatively new microcontroller based on the RP2024 microcontroller.
+
+- Supports Arduino framework
+- More powerful than Arduino Uno
+- Supports MicroPython and C/C++
+- Smaller package
+- Easily integrated with custom PCBs
+
+### ESP32
+
+<img src={esp32} width="300" />
+
+A powerful microcontroller with built-in WiFi and Bluetooth.
+
+- Supports Arduino framework
+- Useful for projects needing bluetooth or WiFi connectivity
+- Faster clock speed than Arduino Uno
+- Uses FreeRTOS out of the box
+
+## Single-Board Computers
+
+### Raspberry Pi 4/5
+
+<img src={pi4} width="300" />
+
+A linux computer on a single board that can run a full operation
+system, allowing for more complex tasks like running a web server, or processing large
+amounts of control data.
+
+- More powerful than microcontrollers
+- Typically runs a Linux based operating system

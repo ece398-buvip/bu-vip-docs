@@ -1,0 +1,61 @@
+---
+# Controls where this document shows up in the sidebar
+sidebar_position: 1
+---
+# About These Docs
+
+This documentation serves to act as a knowledgebase for all within 
+ECE 398 (or others) to reference in order to lean about our technologies,
+proceadures, and past design experience.
+
+This site was built with [Docusaurus](https://docusaurus.io/). To get the best
+understanding of what features are available to you, make sure to read the 
+[docusaurus docs](https://docusaurus.io/docs/docs-introduction)
+
+Note that docusaurus gives you the option to [create pages using react](https://docusaurus.io/docs/creating-pages#add-a-react-page)
+which is very powerful because you can essentially make this documentation site a "normal" website
+as well.
+
+## Adding to the Documentation
+
+You can add files to the `docs/` directory to 
+create content on the webpage. It is recommended to
+copy an existing file and use it as a template for your page, if you are starting a 
+brand new entry. 
+
+Documentation can be written in **Markdown** (.md) or **MDX** (.mdx). 
+
+Additions in the `docs/` directory will populate on the site automatically
+
+## Controlling Position of Doc Files
+
+You can control the position of the file in the sidebar by adding this
+to the top of the file:
+
+```
+---
+sidebar_position: 1
+---
+```
+
+This example would make this file the first entry in the sidebar. Note this
+also works inside of sub-categories in the sidebar.
+
+## Hiding the Table of Contents
+
+Add the following to the frontmatter (top of your document) to hide the table
+of contents
+
+```
+---
+hide_table_of_contents: true
+---
+```
+
+## Organizing Into Folders
+
+If you choose to make a subdirectory under `docs/` to contain images for a specific
+documentation entry, make sure to name the file "index.md" to prevent the subdirectory
+from becoming a category in the sidebar.
+
+To make a group, add a subdirectory under `docs/`

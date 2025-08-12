@@ -25,14 +25,14 @@ const config = {
   },
 
   // Set the production url of your site here
-  url: 'https://litemage.github.io',
+  url: 'https://ece398-buvip.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/bu-vip-docs/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'litemage', // Usually your GitHub org/user name.
+  organizationName: 'ece398-buvip', // Usually your GitHub org/user name.
   projectName: 'bu-vip-docs', // Usually your repo name.
 
   onBrokenLinks: 'throw',
@@ -56,7 +56,7 @@ const config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/Litemage/bu-vip-docs/blob/main',
+            'https://github.com/ece398-buvip/bu-vip-docs/blob/main',
         },
         theme: {
           customCss: './src/css/custom.css',
@@ -110,7 +110,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-               href: 'https://github.com/imtiazatbradley/',
+               href: 'https://github.com/ece398-buvip/',
               },
             ],
           },

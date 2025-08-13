@@ -4,7 +4,7 @@ sidebar_position: 1
 # Safety Guidelines
 
 The following sections recommend design considerations for safety for all students
-and staff that may design, build, or interract with projects.
+and staff that may design, build, or interact with projects.
 
 These standards are **mandatory** in projects that participate in any public
 showcases outside of the VIP lab.
@@ -14,8 +14,8 @@ showcases outside of the VIP lab.
 * Overall, it is a good idea to include fuses in series with sensitive equipment.
 * Attempt to design systems to fail in a safe way.
 * Any projects using 120VAC or greater than or equal to 24VDC should ensure
-all exposed contacts (wires, terminals, etc) are reasonably heat-shrinked or wrapped to
-reduce shock hazzards.
+all exposed contacts (wires, terminals, etc) are reasonably heat-shrunk or wrapped to
+reduce shock hazards.
 
 ## Safety Requirements
 

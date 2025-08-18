@@ -4,7 +4,7 @@
 // There are various equivalent ways to declare your Docusaurus config.
 // See: https://docusaurus.io/docs/api/docusaurus-config
 
-import {themes as prismThemes} from 'prism-react-renderer';
+import { themes as prismThemes } from 'prism-react-renderer';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -13,10 +13,13 @@ const config = {
   title: 'ECE 398 VIP Technical Docs',
   tagline: 'Vertically Integrated Projects',
   favicon: 'img/favicon.ico',
-  markdown : {
+  markdown: {
     mermaid: true
   },
-  themes: ['@docusaurus/theme-mermaid'],
+  themes: [
+    '@docusaurus/theme-mermaid',
+    '@easyops-cn/docusaurus-search-local',
+  ],
   trailingSlash: true,
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -87,6 +90,10 @@ const config = {
             position: 'left',
             label: 'Docs',
           },
+          {
+            type: 'search',
+            position: 'right'
+          }
         ],
       },
       footer: {
@@ -110,7 +117,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-               href: 'https://github.com/ece398-buvip/',
+                href: 'https://github.com/ece398-buvip/',
               },
             ],
           },

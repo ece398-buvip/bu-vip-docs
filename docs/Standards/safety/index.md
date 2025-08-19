@@ -32,4 +32,4 @@ the power through a power relay or contactor.
 ### Projects require a circuit breaker if:
 
 * Your project uses 120VAC power or similar power supply.
-* Your project uses greater than or equal to 24V power.
+* Your project uses greater than or equal to 24VDC power.

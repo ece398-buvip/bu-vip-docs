@@ -107,7 +107,8 @@ Connectors to use when carrying power between two points.
 
 ## Microcontrollers
 
-Standard microcontrollers for use in ECE 398 VIP projects. Commonly kept in stock in the lab.
+Standard microcontrollers for use in ECE 398 VIP projects. Commonly kept in stock 
+in the lab, and recommended for new designs.
 
 ### Arduino Uno
 
@@ -118,6 +119,10 @@ A popular controller based on the ATMega328P microcontroller.
 - Easy to prototype
 - Lots of libraries and tutorials available
 - Not as powerful
+
+| Logic Level | Nominal Clock Speed | WiFi/Bluetooth | SDK | Datasheet |
+| ---         | ---                 | ---            | --- | ---       |
+| TTL (5V)    | 16MHz               | No             | [Arduino](https://www.arduino.cc/en/software) | [Docs](https://docs.arduino.cc/hardware/uno-rev3/) |
 
 ### Raspberry Pi Pico
 
@@ -131,6 +136,16 @@ Relatively new microcontroller based on the RP2024 microcontroller.
 - Smaller package
 - Easily integrated with custom PCBs
 
+**Different Variations:**
+
+* [Pico-W](https://www.digikey.com/en/products/detail/raspberry-pi/SC0918/16608263) (Pico Wireless RP2040)
+* [Pico](https://www.digikey.com/en/products/detail/raspberry-pi/SC0915/13684020) (Pico RP2040, original version)
+* [Pico 2](https://www.digikey.com/en/products/detail/raspberry-pi/SC1631/24627136) (Pico RP2350, newer version)
+
+| Logic Level  | Nominal Clock Speed | WiFi/Bluetooth | SDK | Datasheet |
+| ---          | ---                 | ---            | --- | ---       |
+| LVTTL (3V3)  | 133MHz              | Some Models    | [Pico SDK](https://www.raspberrypi.com/documentation/pico-sdk/) | [RP2040 Datasheet](https://datasheets.raspberrypi.com/rp2040/rp2040-datasheet.pdf) |
+
 ### ESP32
 
 <img src={esp32} width="300" />
@@ -141,6 +156,10 @@ A powerful microcontroller with built-in WiFi and Bluetooth.
 - Useful for projects needing bluetooth or WiFi connectivity
 - Faster clock speed than Arduino Uno
 - Uses FreeRTOS out of the box
+
+| Logic Level  | Nominal Clock Speed | WiFi/Bluetooth | SDK | Datasheet |
+| ---          | ---                 | ---            | --- | ---       |
+| LVTTL (3V3)  | 80-260MHz           | Most Models    | [ESP-IDF](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/index.html) | [ESP32 Hardware Docs](https://docs.espressif.com/projects/esp-idf/en/stable/esp32/hw-reference/index.html) |
 
 ## Single-Board Computers
 

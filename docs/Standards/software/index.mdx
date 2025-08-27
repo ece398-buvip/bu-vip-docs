@@ -1,0 +1,95 @@
+import c_cpp from './c-cpp.jpeg'
+import python from './python3.png'
+
+## Git
+
+ECE 398 uses Git, a distributed version control system to manage code and track 
+changes. There are a couple tools listed below for its use. You can also check
+out this link:
+
+[learngitbranching.js.org/](https://learngitbranching.js.org/)
+
+For a tutorial on how branching works. It's a good introduction to git as a version
+control system.
+
+# Software
+
+The following are some software stackups that have been used by other projects in the past. 
+
+* **[Platformio](https://platformio.org/)** - A popular IDE for embedded development that supports multiple platforms including Arduino.
+* **[VSCode](https://code.visualstudio.com/)** - A lightweight but powerful source code editor with support for many programming languages and extensions.
+* **[MkDocs Material](https://squidfunk.github.io/mkdocs-material/)** - Easy to manage documentation generator to make documentation websites.
+* **[GitHub](https://github.com/)** - A web-based platform used for version control and collaboration.
+* **[GitHub Desktop](https://desktop.github.com/download/)** - A git client that can be used for version control and collaboration.
+* **[OnShape](https://www.onshape.com/)** - A cloud-based CAD platform for mechanical design.
+* **[KiCad](https://www.kicad.org/)** - Open source PCB design software for making custom PCBs.
+* **[ClickUp](https://clickup.com/)** - A project management tool.
+
+# Language Overview
+
+Different languages and their common use-cases.
+
+## C/C++
+
+<img src={c_cpp} width="200" />
+
+C and C++ are the most common embedded systems and system-level programming languages.
+Use C/C++ if your project requires speed and hardware access.
+
+**Good For:**
+
+* Real-time systems
+* Embedded systems with lots of external hardware interaction
+* Fast processing
+
+**Not Great For:**
+
+* Rapid prototyping
+* Tasks where time doesn't matter
+
+### Sample:
+
+**C**
+```c
+#include <stdio.h>
+
+int main()
+{
+    printf("Hello, world!\n");
+}
+```
+
+**C++**
+```cpp
+#include <iostream>
+
+int main()
+{
+    std::cout << "Hello, world!" << std::endl;
+}
+```
+
+## Python
+
+<img src={python} width="200" />
+
+Python is an easy-to-use high-level programming language that runs on an interpreter.
+Python does **not** compile to machine code, so it requires extra overhead that C/C++ does not.
+
+**Great For:**
+
+* Rapid prototyping
+* Data analysis
+* Machine learning
+* Scripts
+
+**Not Great For:**
+
+* Performance-critical applications
+* Low-level hardware interaction
+
+### Sample
+
+```Python
+print("Hello, world!")
+```

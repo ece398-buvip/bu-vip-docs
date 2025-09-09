@@ -1,0 +1,40 @@
+import adapter from './wifi-adapter.png';
+import usbtouart from './usb_to_uart.png';
+
+# Tools
+
+Tools that we commonly use in ECE 398 VIP, both mechanical and electrical.
+
+## USB-WiFi Adapters
+
+<img src={adapter} alt="WiFi Adapter" width={300} />
+
+USB-WiFi adapters are useful for adding WiFi capabilities to devices that do not
+have built-in WiFi, or for adding an additional wireless interface to a device. 
+
+The USB-WiFi adapters VIP keeps in stock are:
+
+* TP-Link Archer T2U Nano
+
+### Drivers
+
+For Windows, you should be able to just download the following drivers from the
+TP-Link website and the adapters will work.
+
+For Linux, the drivers seem to be in the mainline kernel, but have not reached
+most Ubuntu distributions yet. For now, you will have to manually install them
+following the instructions on the GitHub listed below.
+
+* Windows - [tplink.com](https://www.tp-link.com/us/support/download/archer-t2u-nano/)
+* Linux - [github.com/lwfinger/rtw88](https://github.com/lwfinger/rtw88) - These should be in the kernel soon and not necessary (hopefully)
+
+## USB-to-UART Adapters
+
+<img src={usbtouart} alt="USB-to-UART Adapter" width={300} />
+
+Not all microcontrollers (Picos, Arduinos, etc) have built-in USB-to-UART converters
+that allow you to communicate to the board over USB. In these cases, you can use a 
+USB-to-UART to communicate with the embedded system.
+
+Note that most single-board computers will have a serial port you can access
+by using one of these cables instead of using a keyboard/monitor or ssh.

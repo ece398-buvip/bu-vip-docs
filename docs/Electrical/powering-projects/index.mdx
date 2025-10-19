@@ -1,0 +1,314 @@
+---
+sidebar_position: 3
+---
+
+import ac_dc_ps from './ac-dc-supply.png'
+import wall_adapter from './wall-adapter.png'; 
+import din_rail_ps from './din-rail-supply.png';
+import voltage_divider from './voltage-divider.png';
+import series_regulator from './series-regulator.png';
+import switching_regulator from './switching-regulator.png';
+import switch_pwm from './switch-regulator-pwm.png';
+import alkaline_battery from './alkaline-batteries.png';
+import lithium_polymer from './lithium-polymer.png';
+import sla_battery from './sla-battery.png';
+import lipo_charger from './lipo-charger.png';
+import diagram_solar from './diagram-solar.png';
+import diagram_battery from './diagram-battery.png';
+import diagram_wall from './diagram-wall.png';
+
+# Powering Embedded Electronics Projects
+
+When designing embedded electronic projects, one of the most important considerations
+is how to power the system. Typically, there are two main options for powering 
+projects:
+
+- **Battery Power**: Using batteries to provide power to portable or remote systems.
+- **Wall Power**: Somehow connecting the system to mains power, usually through an AC to DC power supply.
+
+Projects may also require converting voltages to supply the correct voltage levels to different components
+within an embedded system. Typical voltage levels include 3.3V, 5V, 12V, and 24V.
+
+## Why Power Supplies Matter
+
+Different types of power supplies fill different needs, both mechanically and electrically.
+
+Stationary low-power systems typically use wall power supplies like USB adapters.
+Portable low-power systems often use batteries, like Lithium-Ion or Lead Acid.
+Industrial or high-power systems may use DIN rail mounted supplies, or free-standing
+supplies that take in 120VAC and output DC voltages like 12V or 24V.
+
+Different types of power supplies also typically have different mechanical 
+characteristics. 
+
+Wall USB supplies are usually small, lightweight, and use USB connectors. DC-DC 
+regulators are typically either through-hole or chassis mount with free leads
+for attaching custom connectors or soldering directly to a PCB. DIN rail supplies
+are designed to be mounted on standard DIN rails and typically have terminal blocks
+for wiring connections by turning screws. Other AC to DC power supplies typically
+also have terminal blocks for wiring connections.
+
+### Why Not Just Use a Voltage Divider for DC-DC Regulation?
+
+Early in electronics education, students often learn about voltage dividers using resistors.
+
+<img src={voltage_divider} width="400" />
+
+The output voltage is determined by the ratio of the two resistors. The output voltage is 
+given by:
+
+$$
+V_{out} = V_{in} \times \frac{R_2}{R_1 + R_2}
+$$
+
+So, why not just use a voltage divider to get the voltage levels we need?
+
+The problem with voltage dividers is that they are not designed to efficiently
+provide power to loads at larger currents. 
+
+For example, if we want to power a 5V microcontroller and 3 LEDs from a 12V supply and the 
+microcontroller needs 20mA, and then 20mA per LED (total 80mA) the power dissipated as heat over the resistors
+is roughly:
+
+$$
+P_{R1} = V_{R1} \times I = (12V - 5V) \times 0.08A = 0.56W \\
+P_{R2} = V_{R2} \times I = 5V \times 0.08A = 0.4W
+$$
+
+This is already almost 1W of power dissipated as heat in the resistors, and over
+the minimum rating for typical 1/4W resistors. (This will cause the resistors to fail)
+
+In addition, tons of power is wasted as heat, which is inefficient and can cause thermal issues.
+
+:::danger[Don't Use Voltage Dividers for Powering Loads]
+
+    **Voltage dividers are not suitable for powering loads that draw significant current.**
+    Use voltage regulators or dedicated power supplies instead.
+:::
+
+**When is a Voltage Divider Appropriate?**
+
+Voltage dividers are appropriate for low-current applications. In fact, *Linear Voltage Regulators*
+work on similar principles to voltage dividers, but use active components to maintain a stable output voltage.
+Linear regulators are covered more in the next section.
+
+Voltage dividers themselves are not suitable for powering loads, but are common for signal-level and high-impedance applications.
+For example, voltage dividers are often used to step down higher voltage signals to lower voltage levels that only source/sink small
+currents, such as a light-dependent resistor (LDR) measurement circuit.
+
+### Switching vs Linear Regulators
+
+Two common types of voltage regulators are linear and switching regulators. It's important
+to understand the differences between the two types.
+
+#### Linear Regulators
+
+<img src={series_regulator} width="400" />
+
+> Image credit: https://upload.wikimedia.org/wikipedia/commons/9/98/Series_reg.gif
+
+These are simple circuits that use active components (like transistors, and diodes)
+to maintain a constant output voltage. Excess voltage is dissipated as heat via a variable resistor.
+
+Use a linear regulator when the difference between input and output voltage is small,
+the load current is low, or when low output noise is critical.
+
+#### Switching Regulators
+
+<img src={switching_regulator} width="400" />
+
+> Image credit: https://www.allaboutcircuits.com/uploads/articles/Buck-converter-switching-regulator.png
+
+Switching regulators are more complex, and use PWM and energy storage components
+(inductors and capacitors) to efficiently convert one voltage level to another. They are more efficient
+than linear regulators, especially when there is a large difference between input and output voltages.
+
+Use a switching regulator when efficiency is important, if the input voltage is significantly
+higher than the output voltage, or if the system needs to supply higher currents.
+
+<img src={switch_pwm} width="400" />
+
+>Image credit: https://www.allaboutcircuits.com/uploads/articles/DC-voltage-vs-PWM-duty-cycle.png
+
+#### Example Parts
+
+| Part | Link | Type | Maximum Output Current | Datasheet |
+| ---  | ---  | ---  | ---                    | ---       |
+| Amazon DC-DC Adjustable Buck Converter | [Link](https://www.amazon.com/Seloky-Converter-Adjustable-Electronic-Stabilizer/dp/B0DBVYP91F) | Switching | 3A | [LM2596](https://www.ti.com/lit/ds/symlink/lm2596.pdf) |
+| Amazon DC-DC Adjustable Buck With Display | [Link](https://www.amazon.com/Converter-Adjustable-Regulator-Voltmeter-Display%EF%BC%88Pack/dp/B0F1M2SR31) | Switching | 3A | [LM2596](https://www.ti.com/lit/ds/symlink/lm2596.pdf) |
+| Amazon DC Boost Converter | [Link](https://www.amazon.com/Dorhea-MT3608-DC-DC-Boost-Converter/dp/B089JYBF25) | Switching | 2A | [MT3608](https://e2e.ti.com/cfs-file/__key/communityserver-discussions-components-files/196/4012002220_2D004753D358_IC_5B00_MT3608_2C00_SMD_2C00_SOT23_2D00_6L_2C00_AEROSEMI_5D00_.pdf) |
+
+## Battery Power
+
+Some electronics are either mobile or located in remote areas where typical wall power
+is not available. In these cases, batteries are often used to provide power. Typical
+battery voltages for embedded applications include:
+
+- 3.7V (Li-Ion single cell)
+- 7.4V (Li-Ion 2 cell)
+- 12V (Lead Acid)
+- 24V (Lead Acid)
+
+Three of the most common battery chemistries are Lithium-Ion (Li-Ion), Lead Acid, and Alkaline.
+
+### Different Battery Types
+
+Different battery chemistries have different electrical and mechanical characteristics.
+
+#### Alkaline
+
+<img src={alkaline_battery} width="400" />
+
+These are the types of batteries that you typically find in AA, AAA, C, D, and other 
+form factors. They are widely available at low cost, and many consumers are familiar
+with these types of batteries.
+
+Generally, alkaline batteries have a lower energy density compared to the other 
+types of batteries, but they are easy to source and low cost. You can even find
+some that are rechargeable.
+
+Use alkaline batteries for low-power, infrequently used devices where cost is a 
+consideration.
+
+#### Lithium-Ion (Li-Ion)
+
+<img src={lithium_polymer} width="400" />
+
+Li-Ion batteries have become widely popular in recent years, especially for portable
+electronics. Li-Ion batteries have a very high energy density compared to 
+other types, and can provide high currents without large capacity losses.
+
+Use Li-Ion batteries for portable electronics that require high energy density,
+or may be recharged frequently.
+
+#### Lead Acid
+
+<img src={sla_battery} width="400" />
+
+Sealed Lead Acid (SLA) batteries are commonly used in automotive and industrial 
+applications. Lead acid batteries are heavy and bulky compared to other types.
+SLA batteries are more reliable and safer than Lithium-Ion batteries, because
+they are more stable in extreme temperatures. SLA batteries also are more cost-effective
+for larger capacity applications.
+
+Use Lead Acid batteries for stationary remote systems or industrial-like applications
+where weight is not a concern, but reliability and cost are important.
+
+### Charge Controllers
+
+<img src={lipo_charger} width="400" />
+
+When charging batteries, especially from sources like solar panels, it's important to use
+a charge controller that manages the power going into the battery to prevent overcharging,
+and to optimize charging power.
+
+If you are just using a usb adapter to charge a Li-Ion battery, a simple
+charge controller is sufficient. However, if you are using solar panels,
+a Maximum Power Point Tracking (MPPT) charge controller is recommended to
+optimize the power harvested from the solar panels.
+
+#### Example Parts
+
+| Description | Link | Datasheet |
+| ---         | ---  | ---       |
+| Sparkfun Sunny Buddy MPPT Solar Charger | [Link](https://www.sparkfun.com/sparkfun-sunny-buddy-mppt-solar-charger.html) | [Datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/3652fe.pdf) |
+| Adafruit PowerBoost 1000 Li-Ion Charger | [Link](https://www.adafruit.com/product/2465) | [Datasheet](https://cdn-shop.adafruit.com/datasheets/MCP73871.pdf) |
+
+### Solar and MPPT
+
+Solar panels can be used to provide power to batteries in remote or mobile locations.
+However, solar panels' voltage and current output can vary significantly based on sunlight conditions.
+MPPT charge controllers are designed to produce the optimum voltage and current going
+to the battery to optimize power output, regardless of the solar panel's current voltage and current output.
+
+For more information, you can refer to the following resources:
+
+- https://www.cleanenergyreviews.info/blog/mppt-solar-charge-controllers
+- https://www.solar-electric.com/learning-center/mppt-solar-charge-controllers.html/
+
+Use an MPPT charge controller when using solar panels to charge batteries with 
+maximum efficiency.
+
+## Wall Power
+
+"Wall power" refers to powering a system from the 120VAC mains power that is
+available in most buildings. Because most embedded systems operate on DC voltages,
+an AC to DC power supply is typically used to convert the 120VAC mains power to
+the required DC voltage levels.
+
+### "Blocks" Power Supplies
+
+<img src={wall_adapter} width="400" />
+
+"Blocks" refer to the common AC to DC power supplies that are often used to power
+phones, and other consumer electronics. They consist of a power plug to connect
+to 120VAC mains power, and a DC output (often USB) over 5V. Some other supplies
+may provide 9V, 12V, or even 24V outputs.
+
+These types of power supplies are very common and are great for electronic systems
+that are located inside a building, don't require lots of current, and are not
+designed to be portable.
+
+**Example Parts:**
+
+- [5V 2A USB Wall Adapter](https://www.amazon.com/Adapter-Certified-Charger-Charging-Travel/dp/B0F5PLWDYB)
+- [Variable Power Supply](https://www.amazon.com/Adjustable-Universal-Switching-Minidodoca-Electronics/dp/B0C5QG946M)
+
+### AC to DC Power Supplies
+
+<img src={ac_dc_ps} width="400" />
+
+These forms of AC-DC converters are standalone units that do not have a USB
+port, and can typically run at higher currents than those with USB outputs. This
+form-factor of supply usually has screw terminals where the live, neutral, and ground
+wires from the mains power are connected, and separate screw terminals for the DC output.
+These power supplies can also come with multiple voltage rails (for example, 5V, 12V, and 24V outputs).
+
+They are very similar in concept to the "blocks" power supplies, but just bigger
+and with different connection points and mounting methods.
+
+Use one of these types of supplies when higher current levels are required, or 
+when multiple voltage rails are needed.
+
+#### Example Parts
+
+- [Amazon 5V, 12V, 24V 8A switching AC-DC power supply](https://www.amazon.com/Arcity-Switching-Adjustable-Machine-Cocktail/dp/B07X1LBK19)
+
+### DIN Rail Power Supplies
+
+<img src={din_rail_ps} width="400" />
+
+Some power supplies are designed to be mounted on DIN rails, which are commonly
+used in industrial control cabinets. These power supplies typically convert 120VAC
+to 24VDC or 12VDC and typically can provide higher current levels compared to 
+consumer-grade USB wall adapters. These power supplies also provide an interface
+for easy wiring via terminal blocks.
+
+## Reference Designs
+
+### Solar Powered IoT Device with MPPT Charge Controller
+
+<img src={diagram_solar}/>
+
+### Lithium-Ion Battery Powered System with Boost Converter
+
+<img src={diagram_battery}/>
+
+### 120VAC Mains to system with 5V and 12V Rails
+
+<img src={diagram_wall} />
+
+---
+
+*Sources*
+
+- https://www.power-sonic.com/lithium-vs-lead-acid-batteries/
+- https://www.cleanenergyreviews.info/blog/mppt-solar-charge-controllers
+- https://en.wikipedia.org/wiki/Linear_regulator
+- https://en.wikipedia.org/wiki/Voltage_regulator
+- https://learn.sparkfun.com/tutorials/battery-technologies/all
+- https://wellgobattery.com/blogs/industry-news-battery-connector-solutions/lithium-vs-alkaline-vs-lead-acid-battery
+- https://www.jycbattery.com/why-do-cars-still-use-lead-acid-car-batteries/
+- https://www.solar-electric.com/learning-center/mppt-solar-charge-controllers.html/
+
+*By: Jacob Simeone - 2025-10-19*

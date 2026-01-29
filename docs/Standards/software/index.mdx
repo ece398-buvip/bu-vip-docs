@@ -103,3 +103,146 @@ Python does **not** compile to machine code, so it requires extra overhead that 
 ```Python
 print("Hello, world!")
 ```
+
+## Style Guides
+
+Recommended standards on how to format code that is used in ECE398 VIP projects.
+
+### Python
+
+For python, follow the [PEP 8](https://peps.python.org/pep-0008/) style guide. 
+
+In order to do this automatically, without you, the programmer, having to do any
+reading, we recommend the use of [autopep8](https://marketplace.visualstudio.com/items?itemName=ms-python.autopep8).
+You can run the formatter by opening the command palette `ctrl+shift+p` and typing
+"Format Document". If you so please, you can also configure VsCode to format
+the document every time the document is saved.
+
+**Example of PEP8 formatted code:**
+
+```python
+
+class Circle:
+    """A simple Circle class."""
+
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        """Calculate the area of the circle."""
+        return math.pi * self.radius ** 2
+
+
+def print_circle_area(radius):
+    """Print the area of a circle with the given radius."""
+    circle = Circle(radius)
+    area = circle.area()
+    print(f"Area of the circle with radius {radius}: {area:.2f}")
+
+
+if __name__ == "__main__":
+    radius = 5
+    print_circle_area(radius)
+    sys.exit(0)
+```
+
+### C/C++
+
+For C++ classes/namespaces/enums, follow the naming conventions in the 
+[Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html#Naming)
+
+If writing C code with little or no C++, ECE 398 has the following style guide:
+
+* Use `snake_case` for static functions
+* Use `PascalCase` for function names that are exposed to other code
+* Use `s_variableName` for static variables
+* Use `pVariableName` for pointer parameters
+* Use `camelCase` for all other variables
+* All `.h` files should contain a header guard formatted like `__NAME_OF_FILE_H__`
+* Use `SCREAMING_SNAKE_CASE` for macros and enums
+* Types should be post-fixed with `_t` like `my_type_t`
+* Function pointers should be post-fixed with `_fn` like `my_function_fn`
+
+**Example of C Code**
+```C
+// circle.h
+
+#ifdef __CIRCLE_H__
+#define __CIRCLE_H__
+
+typedef struct {
+    float radius;
+} circle_t;
+
+float circle_get_area(circle_t *pCircle)
+
+#endif // __CIRCLE_H__
+```
+
+```C
+// circle.c
+#include "circle.h"
+
+float
+circle_get_area(circle_t *pCircle)
+{
+    return 3.14 * pCircle->radius * pCircle->radius;
+}
+```
+
+```C
+// main.c
+
+#include "circle.h"
+
+static float s_radius = 1.0f;
+
+static void print_radius();
+
+int
+main()
+{
+    print_radius();
+}
+
+void
+print_radius()
+{
+    circle_t circle = {0};
+    circle.radius = s_radius;
+
+    printf("%0.2f\n", circle_get_radius(&circle));
+}
+```
+
+**Example of C++ Code**
+
+```cpp
+// main.cpp
+#include <iostream>
+#include <cmath>
+
+class Circle {
+public:
+    explicit Circle(double r) : radius(r) {}
+
+    double area() const {
+        return M_PI * radius * radius;
+    }
+
+private:
+    double radius;
+};
+
+void printCircleArea(double radius) {
+    Circle circle(radius);
+    double area = circle.area();
+    std::cout << "Area of the circle with radius " << radius << ": " << area << std::endl;
+}
+
+int main() {
+    double radius = 5.0;
+    printCircleArea(radius);
+    return 0;
+}
+```
